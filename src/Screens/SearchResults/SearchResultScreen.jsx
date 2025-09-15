@@ -1,6 +1,15 @@
 // src/screens/SearchResultsScreen.jsx
 import React, { useState } from 'react'; // 1. Import useState
-import { StyleSheet, View, Text, ScrollView, StatusBar } from 'react-native';
+import {
+  StyleSheet,
+  View,
+  Text,
+  ScrollView,
+  StatusBar,
+  TouchableOpacity,
+  Image,
+  Linking,
+} from 'react-native';
 import { buses } from '../../Utils/DummyDataBus';
 import BusCard from '../../Components/Buses/BusCard';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -19,17 +28,22 @@ const SearchResultsScreen = () => {
     setSelectedBus(bus);
   };
 
+  const openChatbotLink = () => {
+    const chatbotUrl = 'https://google.com'; // <-- REPLACE WITH YOUR ACTUAL LINK
+    Linking.openURL(chatbotUrl).catch(err =>
+      console.error("Couldn't load page", err),
+    );
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle="dark-content" />
 
-      {/* 4. Conditionally render the map. It only shows if 'selectedBus' is not null. */}
       {selectedBus && <MapViewComponent selectedBus={selectedBus} />}
 
       <ScrollView>
         <Text style={styles.sectionTitle}>Available Buses</Text>
         {availableBuses.map(bus => (
-          // 5. Pass the handleBusSelect function to each card
           <BusCard key={bus.id} bus={bus} onPress={handleBusSelect} />
         ))}
 
@@ -38,6 +52,17 @@ const SearchResultsScreen = () => {
           <BusCard key={bus.id} bus={bus} onPress={handleBusSelect} />
         ))}
       </ScrollView>
+
+      {/* 2. Add the Chatbot button here, after the ScrollView */}
+      <TouchableOpacity
+        style={styles.chatbotButton}
+        onPress={openChatbotLink} // Use the new function here
+      >
+        <Image
+          source={require('../../Assets/ChatBot/bot.png')} // Use your PNG image
+          style={styles.chatbotIconImage}
+        />
+      </TouchableOpacity>
     </SafeAreaView>
   );
 };
@@ -54,6 +79,29 @@ const styles = StyleSheet.create({
     marginHorizontal: 20,
     marginTop: 20,
     marginBottom: 10,
+  },
+  chatbotButton: {
+    position: 'absolute',
+    bottom: 100,
+    right: 20,
+    width: 60,
+    height: 60,
+    borderRadius: 30,
+    backgroundColor: '#FFFFFF', // Changed to white for better image visibility
+    justifyContent: 'center',
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.3,
+    shadowRadius: 4.65,
+    elevation: 8,
+    zIndex: 10,
+  },
+  // New style for the Image component
+  chatbotIconImage: {
+    width: 35,
+    height: 35,
+    resizeMode: 'contain',
   },
 });
 

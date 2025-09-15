@@ -1,3 +1,10 @@
+project.ext.env = new Properties()
+// CORRECTED LINE:
+def envFile = project.rootProject.file('.env') 
+if (envFile.exists()) {
+    project.ext.env.load(new FileInputStream(envFile))
+}
+
 apply plugin: "com.android.application"
 apply plugin: "org.jetbrains.kotlin.android"
 apply plugin: "com.facebook.react"
@@ -84,6 +91,9 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
+         manifestPlaceholders = [
+            GOOGLE_MAPS_API_KEY: project.ext.env.get("GOOGLE_MAPS_API_KEY", "YOUR_DEFAULT_KEY")
+        ]
     }
     signingConfigs {
         debug {

@@ -12,7 +12,7 @@ import {
 
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-const LoginScreen = () => {
+const LoginScreen = ({navigation,onLogin }) => {
   const [mobileNumber, setMobileNumber] = useState('');
   const [otp, setOtp] = useState(Array(6).fill(''));
   const [showOtpInput, setShowOtpInput] = useState(false); // State to control OTP input visibility
@@ -29,6 +29,7 @@ const LoginScreen = () => {
   const handleLogin = () => {
   const otpValue = otp.join('');
   console.log('Verifying OTP:', otpValue);
+   onLogin();
 };
 
 
@@ -128,7 +129,7 @@ const LoginScreen = () => {
 
         <View style={styles.signupLinkContainer}>
           <Text style={styles.signupText}>don't have account? </Text>
-          <TouchableOpacity onPress={() => console.log('Signup link pressed')}>
+          <TouchableOpacity onPress={() =>  navigation.navigate("Signup")}>
             <Text style={styles.signupLink}>&rarr; signup</Text>
           </TouchableOpacity>
         </View>

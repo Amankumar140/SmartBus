@@ -14,7 +14,7 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-const ReportScreen = () => {
+const ReportScreen = ({navigation}) => {
   const [incidentType, setIncidentType] = useState('');
   const [location, setLocation] = useState('');
   const [date, setDate] = useState('');
@@ -42,7 +42,7 @@ const ReportScreen = () => {
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
         {/* Header */}
         <View style={styles.header}>
-          <TouchableOpacity onPress={() => console.log('Go back')}>
+          <TouchableOpacity onPress={() => navigation.goBack()}>
             <Icon name="arrow-left" size={24} color="#333" />
           </TouchableOpacity>
           <Text style={styles.headerTitle}>Report an Accident</Text>

@@ -13,7 +13,7 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-const SignupScreen = () => {
+const SignupScreen = ({navigation, onLogin }) => {
   const [name, setName] = useState('');
   const [mobile, setMobile] = useState('');
   const [age, setAge] = useState('');
@@ -23,6 +23,7 @@ const SignupScreen = () => {
   const handleSignup = () => {
     const userDetails = { name, mobile, age, region, email };
     console.log('Signing up with details:', userDetails);
+    onLogin();
     // In a real app, you'd send this data to your backend
   };
 
@@ -32,7 +33,7 @@ const SignupScreen = () => {
         style={{ flex: 1 }}
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
         <View style={styles.header}>
-          <TouchableOpacity onPress={() => console.log('Back button pressed')}>
+          <TouchableOpacity onPress={() =>  navigation.navigate("Login")}>
             <Text style={styles.backButton}>&lt;</Text>
           </TouchableOpacity>
         </View>

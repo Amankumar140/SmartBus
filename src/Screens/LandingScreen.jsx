@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-const LandingScreen = () => {
+const LandingScreen = ( { navigation }) => {
 
   
 
@@ -42,9 +42,9 @@ const LandingScreen = () => {
       {/* Bottom 'Get Started' Button */}
       <TouchableOpacity
         style={styles.getStartedButton}
-        onPress={() => console.log('Get Started pressed')}
+       onPress={() => navigation.navigate('Login')}
       >
-        <Text style={styles.getStartedButtonText}>Get Started</Text>
+        <Text style={styles.getStartedButtonText}> Get Started</Text>
       </TouchableOpacity>
     </SafeAreaView>
   );

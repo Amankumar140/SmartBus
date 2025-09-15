@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-const HomeSearch = () => {
+const HomeSearch = ({navigation}) => {
   const [source, setSource] = useState('');
   const [destination, setDestination] = useState('');
 
@@ -20,6 +20,7 @@ const HomeSearch = () => {
       return;
     }
     console.log(`Searching for buses from ${source} to ${destination}`);
+    navigation.navigate('SearchResults');
     // Here we would navigate to a results screen with the bus list
   };
 
@@ -30,7 +31,7 @@ const HomeSearch = () => {
         <Text style={styles.headerTitle}>SmartBus</Text>
         {/* Placeholder for a profile icon */}
         <View style={styles.profileIconContainer}> {/* Correct style name */}
-          <Image
+          <Image onPress={()=>navigation.navigate("Profile")}
             source={require('../../Assets/Profile/avatarLogin.png')} // Make sure this path is correct
             style={styles.profileImage}
           />

@@ -12,7 +12,7 @@ import {
 
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-const LoginScreen = ({navigation,onLogin }) => {
+const LoginScreen = ({ navigation, onLogin }) => {
   const [mobileNumber, setMobileNumber] = useState('');
   const [otp, setOtp] = useState(Array(6).fill(''));
   const [showOtpInput, setShowOtpInput] = useState(false); // State to control OTP input visibility
@@ -27,11 +27,10 @@ const LoginScreen = ({navigation,onLogin }) => {
   };
 
   const handleLogin = () => {
-  const otpValue = otp.join('');
-  console.log('Verifying OTP:', otpValue);
-   onLogin();
-};
-
+    const otpValue = otp.join('');
+    console.log('Verifying OTP:', otpValue);
+    onLogin();
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -40,7 +39,7 @@ const LoginScreen = ({navigation,onLogin }) => {
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       >
         <View style={styles.header}>
-          <TouchableOpacity onPress={() => console.log('Back button pressed')}>
+          <TouchableOpacity onPress={() => navigation.navigate('Landing')}>
             <Text style={styles.backButton}>&lt;</Text>{' '}
             {/* Placeholder for back arrow */}
           </TouchableOpacity>
@@ -129,7 +128,7 @@ const LoginScreen = ({navigation,onLogin }) => {
 
         <View style={styles.signupLinkContainer}>
           <Text style={styles.signupText}>don't have account? </Text>
-          <TouchableOpacity onPress={() =>  navigation.navigate("Signup")}>
+          <TouchableOpacity onPress={() => navigation.navigate('Signup')}>
             <Text style={styles.signupLink}>&rarr; signup</Text>
           </TouchableOpacity>
         </View>

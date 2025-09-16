@@ -44,7 +44,7 @@ const HomeStack = () => (
 
 // --- MAIN TAB NAVIGATOR ---
 // This is the main navigator for when the user IS logged in.
-const MainTabs = () => (
+const MainTabs = ({onLogout}) => (
   <Tab.Navigator
     screenOptions={({ route }) => ({
       headerShown: false,
@@ -65,7 +65,9 @@ const MainTabs = () => (
     <Tab.Screen name="Home" component={HomeStack} />
     <Tab.Screen name="Notifications" component={NotificationScreen} />
     <Tab.Screen name="Report" component={ReportScreen} />
-    <Tab.Screen name="Profile" component={ProfileScreen} />
+    <Tab.Screen name="Profile">
+      {props => <ProfileScreen {...props} onLogout={onLogout} />}
+    </Tab.Screen>
   </Tab.Navigator>
 );
 
@@ -80,7 +82,7 @@ const AppNavigator = () => {
 
   return (
     // Pass the handleLogin function to the AuthStack
-    <>{isLoggedIn ? <MainTabs /> : <AuthStack onLogin={handleLogin} />}</>
+    <>{isLoggedIn ? <MainTabs onLogout={handleLogout} /> : <AuthStack onLogin={handleLogin} />}</>
   );
 };
 

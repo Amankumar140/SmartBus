@@ -26,30 +26,45 @@ const MapViewComponent = ({ selectedBus }) => {
   }, [selectedBus]); // 4. The effect re-runs if the 'selectedBus' prop changes
 
   return (
-    <MapView
-      style={styles.map}
-      provider={PROVIDER_GOOGLE}
-      // The map region now centers on the selected bus
-      region={{
-        ...busPosition,
-        latitudeDelta: 0.05,
-        longitudeDelta: 0.05,
-      }}
-    >
-      <Marker coordinate={busPosition}>
-        <View style={styles.markerContainer}>
-          <Text style={styles.busIcon}>🚌</Text>
-          <View style={styles.etaBubble}>
-            <Text style={styles.etaText}>{eta} min</Text>
+    <View style={styles.container}>
+      <MapView
+        style={styles.map}
+        provider={PROVIDER_GOOGLE}
+        // The map region now centers on the selected bus
+        region={{
+          ...busPosition,
+          latitudeDelta: 0.05,
+          longitudeDelta: 0.05,
+        }}
+      >
+        <Marker coordinate={busPosition}>
+          <View style={styles.markerContainer}>
+            <Text style={styles.busIcon}>🚌</Text>
+            <View style={styles.etaBubble}>
+              <Text style={styles.etaText}>{eta} min</Text>
+            </View>
           </View>
-        </View>
-      </Marker>
-    </MapView>
+        </Marker>
+      </MapView>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   // Defines the size of the map view on the screen.
+  container: {
+    marginHorizontal: 12,
+    padding: 5,
+    backgroundColor: '#fff', // card-like background
+    borderRadius: 15, // smooth rounded corners
+    borderWidth: 1,
+    borderColor: '#e0e0e0', // subtle border
+    shadowColor: '#000', // iOS shadow
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 4,
+  },
   map: {
     height: 400,
     width: '100%',

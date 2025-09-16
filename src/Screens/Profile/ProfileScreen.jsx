@@ -10,7 +10,7 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'; // Using MaterialCommunityIcons for various icons
 
-const ProfileScreen = ({navigation}) => {
+const ProfileScreen = ({ navigation, onLogout }) => {
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollContent}>
@@ -41,16 +41,40 @@ const ProfileScreen = ({navigation}) => {
         {/* Settings Section */}
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Settings</Text>
-          <TouchableOpacity style={styles.settingItem} onPress={() => console.log('Manage Account')}>
-            <Icon name="account-outline" size={24} color="#555" style={styles.settingIcon} />
+          <TouchableOpacity
+            style={styles.settingItem}
+            onPress={() => console.log('Manage Account')}
+          >
+            <Icon
+              name="account-outline"
+              size={24}
+              color="#555"
+              style={styles.settingIcon}
+            />
             <Text style={styles.settingText}>Manage Account</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.settingItem} onPress={() => console.log('Privacy & Security')}>
-            <Icon name="shield-lock-outline" size={24} color="#555" style={styles.settingIcon} />
+          <TouchableOpacity
+            style={styles.settingItem}
+            onPress={() => console.log('Privacy & Security')}
+          >
+            <Icon
+              name="shield-lock-outline"
+              size={24}
+              color="#555"
+              style={styles.settingIcon}
+            />
             <Text style={styles.settingText}>Privacy & Security</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.settingItem} onPress={() => console.log('App Preferences')}>
-            <Icon name="cog-outline" size={24} color="#555" style={styles.settingIcon} />
+          <TouchableOpacity
+            style={styles.settingItem}
+            onPress={() => console.log('App Preferences')}
+          >
+            <Icon
+              name="cog-outline"
+              size={24}
+              color="#555"
+              style={styles.settingIcon}
+            />
             <Text style={styles.settingText}>App Preferences</Text>
           </TouchableOpacity>
         </View>
@@ -58,16 +82,22 @@ const ProfileScreen = ({navigation}) => {
         {/* Help & Support Section */}
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Help & Support</Text>
-          <TouchableOpacity style={styles.button} onPress={() => console.log('Help & FAQs')}>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => console.log('Help & FAQs')}
+          >
             <Text style={styles.buttonText}>Help & FAQs</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.button} onPress={() => console.log('Contact Transport Authority')}>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => console.log('Contact Transport Authority')}
+          >
             <Text style={styles.buttonText}>Contact Transport Authority</Text>
           </TouchableOpacity>
         </View>
 
         {/* Logout Button */}
-        <TouchableOpacity style={styles.logoutButton} onPress={() => console.log('Log Out')}>
+        <TouchableOpacity style={styles.logoutButton} onPress={onLogout}>
           <Text style={styles.logoutButtonText}>Log Out</Text>
         </TouchableOpacity>
       </ScrollView>

@@ -1,36 +1,22 @@
 import React from 'react';
-import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text, Image, TouchableOpacity, StatusBar } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-const LandingScreen = ( { navigation }) => {
-
-  
-
+const LandingScreen = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
-      {/* Background road graphic */}
-      <Image
-        source={require('../Assets/LandingPage/Road.png')}
-        style={styles.roadImage}
-      />
+      <StatusBar barStyle="dark-content" backgroundColor="#F4F2F1" />
 
-      {/* Top Language Button
-      <TouchableOpacity style={styles.languageButton}>
-        <View style={styles.radioIcon} />
-        <Text style={styles.languageText}>English</Text>
-      </TouchableOpacity> */}
-
-      {/* Main content container */}
+      {/* Main content container stacks elements from the top */}
       <View style={styles.content}>
         <Image
           source={require('../Assets/LandingPage/Punjab.png')}
           style={styles.logo}
         />
-       <View style={styles.textSlogan}>
-         <Text style={styles.title}>Never miss your Bus again</Text>
-        <Text style={styles.subtitle}>Apka Safar Sarthi</Text>
-       </View>
-
+        <View style={styles.textSlogan}>
+          <Text style={styles.title}>Never miss your Bus again</Text>
+          <Text style={styles.subtitle}>Apka Safar Sarthi</Text>
+        </View>
         <View style={styles.busIconContainer}>
           <Image
             source={require('../Assets/LandingPage/locationIcon.png')}
@@ -39,11 +25,16 @@ const LandingScreen = ( { navigation }) => {
         </View>
       </View>
 
-      {/* Bottom 'Get Started' Button */}
+      {/* Background road graphic is positioned absolutely at the bottom */}
+      <Image
+        source={require('../Assets/LandingPage/Road.png')}
+        style={styles.roadImage}
+      />
+
+      {/* The button is positioned absolutely to float on top */}
       <TouchableOpacity
         style={styles.getStartedButton}
-       onPress={() => navigation.navigate('Login')}
-      >
+        onPress={() => navigation.navigate('Login')}>
         <Text style={styles.getStartedButtonText}> Get Started</Text>
       </TouchableOpacity>
     </SafeAreaView>
@@ -55,29 +46,21 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#F4F2F1',
   },
-  roadImage: {
-    position: 'absolute',
-    bottom: 0,
-    width: '100%',
-    height: '35%', // <-- CHANGED: Use percentage for responsive height
-    resizeMode: 'cover', // <-- CHANGED: 'cover' often looks better
-  },
   content: {
-    flex: 1, // This is key for flexbox to work
-    justifyContent: 'space-around', // <-- CHANGED: Distributes content evenly
+    flex: 1,
     alignItems: 'center',
     paddingHorizontal: 30,
-    paddingVertical: 20, // <-- CHANGED: Replaced fixed paddingBottom
+    paddingTop:40
   },
   logo: {
-    width: 250, // Slightly reduced for better fit on small screens
-    height: 250,
+    width: 200,
+    height: 200,
     resizeMode: 'contain',
-    // marginBottom was removed
+    marginTop: 60,      // Pushes the logo down from the top
+    marginBottom: 40,   // Creates space below the logo
   },
   textSlogan: {
     alignItems: 'center',
-    // marginBottom was removed
   },
   title: {
     fontFamily: 'serif',
@@ -92,19 +75,25 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   busIconContainer: {
-    width: '100%',
-    alignItems: 'flex-end',
-    paddingRight: 20,
-    // marginBottom was removed
+    position: 'absolute', // Allows precise positioning
+    top: 465,             // Positions it vertically
+    right: 40,            // Positions it horizontally
   },
   busIcon: {
     width: 80,
     height: 80,
     resizeMode: 'contain',
   },
+  roadImage: {
+    position: 'absolute',
+    bottom: 0,
+    width: '100%',
+    height: '40%',       // Takes up the bottom 40% of the screen
+    resizeMode: 'stretch',
+  },
   getStartedButton: {
     position: 'absolute',
-    bottom: '8%', // <-- CHANGED: Use percentage for responsive positioning
+    bottom: 80,          // Positioned a fixed distance from the bottom
     left: '10%',
     width: '80%',
     backgroundColor: '#8E4DFF',
@@ -122,16 +111,6 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
     fontSize: 18,
     fontWeight: 'bold',
-  },
-  // Radio button styles are not used but kept here for completeness
-  radioIcon: {
-    width: 12,
-    height: 12,
-    borderRadius: 6,
-    borderWidth: 1,
-    borderColor: '#8E4DFF',
-    backgroundColor: '#C5A6FF',
-    marginRight: 8,
   },
 });
 

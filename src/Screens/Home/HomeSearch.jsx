@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-const HomeSearch = ({navigation}) => {
+const HomeSearch = ({ navigation }) => {
   const [source, setSource] = useState('');
   const [destination, setDestination] = useState('');
 
@@ -30,11 +30,13 @@ const HomeSearch = ({navigation}) => {
       <View style={styles.header}>
         <Text style={styles.headerTitle}>SmartBus</Text>
         {/* Placeholder for a profile icon */}
-        <View style={styles.profileIconContainer}> {/* Correct style name */}
-          <Image onPress={()=>navigation.navigate("Profile")}
-            source={require('../../Assets/Profile/avatarLogin.png')} // Make sure this path is correct
-            style={styles.profileImage}
-          />
+        <View style={styles.profileIconContainer}>
+          <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
+            <Image
+              source={require('../../Assets/Profile/avatarLogin.png')}
+              style={styles.profileImage}
+            />
+          </TouchableOpacity>
         </View>
       </View>
 

@@ -49,6 +49,7 @@ const MainTabs = () => (
     screenOptions={({ route }) => ({
       headerShown: false,
       tabBarActiveTintColor: '#8E4DFF',
+      tabBarHideOnKeyboard: true, 
       tabBarInactiveTintColor: 'gray',
       tabBarIcon: ({ color, size }) => {
         const icons = {

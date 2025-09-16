@@ -49,6 +49,7 @@ const SignupScreen = ({navigation, onLogin }) => {
             style={styles.input}
             placeholder="Name"
             value={name}
+            placeholderTextColor="#A9A9A9"
             onChangeText={setName}
             autoCapitalize="words"
           />
@@ -57,6 +58,7 @@ const SignupScreen = ({navigation, onLogin }) => {
             placeholder="Mobile"
             value={mobile}
             onChangeText={setMobile}
+            placeholderTextColor="#A9A9A9"
             keyboardType="phone-pad"
             maxLength={10}
           />
@@ -65,6 +67,7 @@ const SignupScreen = ({navigation, onLogin }) => {
             placeholder="Age"
             value={age}
             onChangeText={setAge}
+            placeholderTextColor="#A9A9A9"
             keyboardType="number-pad"
           />
 
@@ -83,6 +86,7 @@ const SignupScreen = ({navigation, onLogin }) => {
             placeholder="Email (optional)"
             value={email}
             onChangeText={setEmail}
+            placeholderTextColor="#A9A9A9"
             keyboardType="email-address"
             autoCapitalize="none"
           />
